@@ -1,0 +1,62 @@
+
+
+service: serverless-api-rds
+# app and org for use with dashboard.serverless.com
+app: serverless-api-rds-app
+org: weber839
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 128
+  timeout: 30
+  #region: us-east-1f
+
+
+functions:
+
+  getTodo:
+    handler: handler.getTodo
+    events:
+      - http:
+          path: todo/{id}
+          method: get
+          cors: false
+
+  getAllTodos:
+    handler: handler.getAllTodos
+    events:
+      - http:
+          path: todo
+          method: get
+          cors: false
+
+  createTodo:
+    handler: handler.createTodo
+    events:
+      - http:
+          path: todo
+          method: post
+          cors: false
+
+  updateTodo:
+    handler: handler.updateTodo
+    events:
+      - http:
+          path: todo/{id}
+          method: put
+          cors: false
+
+  deleteTodo:
+    handler: handler.deleteTodo
+    events:
+      - http:
+          path: todo/{id}
+          method: delete
+          cors: false
+
+
+
